@@ -1,2 +1,0 @@
-# frontend-kiosqu
-# full js
