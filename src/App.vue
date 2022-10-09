@@ -1,8 +1,4 @@
 <template>
-  <div id="nav">
-    <router-link to="/" class="btn btn-dark text-light">Home</router-link> |
-    <router-link to="/about" class="btn btn-dark text-light">About</router-link>
-  </div>
   <router-view/>
 </template>
 
@@ -13,6 +9,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+  font-family: 'Quicksand', sans-serif;
 }
 
 #nav {
