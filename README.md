@@ -1,4 +1,4 @@
-# frontend-rusun
+# Full Js
 
 ## Project setup
 ```
