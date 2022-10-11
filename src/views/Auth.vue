@@ -7,6 +7,8 @@
             <div class="card-body text-start">
                 <h6><strong>LOGIN TO ACCOUNT</strong></h6>
                 <hr>
+
+                <div class="alert alert-danger" v-for="notif in notification " :key="notif">{{notif}}</div>
                 <div class="form-group text-start">
                 <label for="user"><strong>Username</strong></label>
                 <div class="input-group mb-3 mt-2">
@@ -14,6 +16,7 @@
                     ><i class="fa fa-user"></i
                     ></span>
                     <input
+                    required
                     v-model="log.username"
                     type="text"
                     class="form-control"
@@ -30,6 +33,7 @@
                     ><i class="fa fa-lock"></i
                     ></span>
                     <input
+                    required
                     v-model="log.password"
                     type="password"
                     class="form-control"
@@ -53,10 +57,12 @@
   </div>
 </template>
 <script>
-import { reactive } from '@vue/reactivity';
+import { reactive,ref } from 'vue'
 import http from '../services/url'
 export default {
   setup() {
+
+        const notification = ref([])
         const log = reactive({
             username:"",
             password:""
@@ -68,12 +74,14 @@ export default {
                 password:log.password
             })
             .then((response) => {
-                console.log(response)
+                const res = response.data
+                notification.value.push('Anda Akan Di Redirect Ke Halaman Dashboard Dalam 5 Detik')
             }).catch((error) => {
-                console.log(error)
+                error.response.status == 401 ? notification.value.push('Maaf Username Dan Password Anda Tidak Terdaftar') : ''
+
             })
         }
-        return { login,log }
+        return { login,log,notification }
   },
 };
 </script>
